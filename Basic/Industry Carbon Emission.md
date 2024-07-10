@@ -104,4 +104,15 @@ result
 
 ```
 
+The query can be explained as follows:
+
+First, we select the industry, then we make a distinct count of the companies· In the third column, we round the sum of the footprint· In the FROM clause, it specifies that it is df· In the WHERE clause, the tricky part comes, specifying textually "where the year is in the last year", meaning it will filter by the generated subquery, which calculates the maximum year in the table·
+
+Then it is grouped by column 1, which is the industry, and ordered by column 3 in descending order.
+
+### 
+
+![image](https://github.com/LuisEnriqueML1/sql_practice/assets/68356494/9ad0a30c-a0bd-436f-a9a6-7c67195c1aab)
+
+
 
