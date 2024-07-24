@@ -1,15 +1,15 @@
-# 📊 Introduction 
+# 📊 1. Introduction 
 
 In 2018, a Japanese university with a diverse student body conducted a comprehensive survey. The following year, an ethically and regulatory approved study based on this research was published.
 
 The study found that international students face a higher risk of mental health difficulties compared to the general population. Furthermore, the research identified that social connectedness (belonging to a social group) and acculturative stress (stress associated with adapting to a new culture) are significant predictors of depression. 🧠💔
 
-# 📝 Description 
+# 📝 2. Description 
 
 To better understand this problem and find common trends, I used  SQL for exploring and analyzing data  📊.  To make the analysis even more insightful, I also used RStudio. . But it doesn't stop there! I wanted to go a step further and find groups of students who may be more prone to mental health challenges. So, I employed a clever algorithm called K-means clustering using Python. It's like having a robot assistant that can categorize students based on their unique characteristics.🤖 
 
 
-## 🛢️ Dataset
+## 🛢️ 2.1 Dataset
 The dataset includes the following variables:
 
 * inter_dom: Indicates the type of student, distinguishing between international and domestic students. 🌍🏠
@@ -23,14 +23,14 @@ The dataset includes the following variables:
 * tosc: Total score measuring social connectedness. 🤝
 * toas: Total score measuring acculturative stress. 🌍🤯
 
-# 🧠 The Analysis 
+# 🧠 3. The Analysis 
 
 The first step is to get an idea of the data. According to the introduction, higher levels of todep signify major depression, an increase in tosc means more connections with others, and toas indicates higher acculturative stress.
 
-## 🛢 Data Exploration SQL
+## 🛢 3.1 Data Exploration SQL
 Using SQL, we will describe these parameters, focusing on dimensions such as gender, type of student (inter_dom), and language proficiency (japanese_cate and english_cate). This will help us understand the distribution and relationships within the dataset.
 
-### Look at the data
+### 3.1.1 Look at the data
 Using SQL in Python, we write a query to see the first 3 rows of all dataset. 
 
 ```
@@ -46,7 +46,7 @@ result
 ```
 ![image](https://github.com/user-attachments/assets/8b05c5b7-be93-4c5e-8520-185dc91c5253)
 
-### 🎯Averages groups
+### 3.1.2 🎯Averages groups
 
 
 
@@ -256,7 +256,7 @@ result
 * Average Acculturative Stress Score (toas): 75.29 🌍🤯
 
 
-### 📊 R Graphs
+## 3.2 📊 R Graphs
 ```
 GGally::ggpairs(df[,c(1,8,9,10)],
                 aes(color = df$inter_dom))
@@ -290,7 +290,7 @@ Using RStudio, a GGally plot was created to visualize the distributions and rela
     International Students: -0.537
 
 
-### 👨‍💻 T-Test Results
+## 3.3 👨‍💻 T-Test Results
 
 We used the t.test function in R to determine if the mean scores of todep, tosc, and toas are statistically different between international and domestic students.
 
@@ -318,11 +318,11 @@ Conclusion: The null hypothesis that the means are equal cannot be rejected for 
 Significant difference in mean scores between international and domestic students.
 Conclusion: The null hypothesis that the means are equal is rejected for toas, indicating that international students have significantly higher acculturative stress compared to domestic students.
 
-## 🚀 Clustering
+## 3.4 🚀 Clustering
 
 To perform unsupervised machine learning using K-means clustering, we first upload the dataset into the VSCode environment. Here are the key steps taken:
 
-### 1. Upload Data:
+### 3.4.1 Upload Data:
 ```
 import pandas as pd
 df = pd.read_csv("C:/users/luise/downloads/students.csv.csv")
@@ -330,7 +330,7 @@ df = df[["inter_dom","age","stay","japanese_cate","english_cate","todep","tosc",
 ```
 The dataset is uploaded to the VSCode environment for preprocessing and analysis.
 
-### 2. Initial Inspection:
+### 3.4.2 Initial Inspection:
 ```
 df.head(2)
 ```
@@ -338,7 +338,7 @@ df.head(2)
 
 The first few columns of the dataset are examined. The dataset includes categorical variables such as inter_dom, japanese_cate, and english_cate. We omitted gender and academic for this clustering analysis.
 
-### 3. Data Transformation:
+### 3.4.3 Data Transformation:
 ```
 cat_map = {'Low': 1, 'Average': 2, 'High': 3}
 df["japanese_cate"] = df["japanese_cate"].replace(cat_map)
@@ -358,7 +358,7 @@ The japanese_cate and english_cate columns are converted into ordinal values. Fo
 * Average proficiency is represented by 2.
 * High proficiency is represented by 3.
 
-### 4. Principal Component Analysis (PCA):
+### 3.4.4 Principal Component Analysis (PCA):
 ```
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
@@ -374,7 +374,7 @@ plt.title("PCA Explained Variance Ratio")
 
 To manage the many variables, we applied PCA. The explained variance ratio indicated that two components account for more than 95% of the variance. Thus, two components were chosen for the analysis.
 
-### 5. Selecting the Best Number of Clusters:
+### 3.4.5 Selecting the Best Number of Clusters:
 ```
 pca = PCA(n_components=2)
 principalComponents = pca.fit_transform(data)
@@ -394,7 +394,7 @@ plt.title("Clusters")
 
 We used the K-means algorithm from sklearn and ran tests with different numbers of clusters. Using the elbow method, we identified that 3 clusters provide the best fit for our data.
 
-### 6. Running the Clustering Algorithm:
+### 3.4.6 Running the Clustering Algorithm:
 ```
 kmc = KMeans(n_clusters=3, init = "k-means++", random_state=21)
 kmc.fit(data)
@@ -413,7 +413,7 @@ plt.title("Students Clustering")
 We performed K-means clustering with 3 clusters on the PCA-transformed dataset. The resulting plot shows three distinct clusters with sufficient information to classify the students effectively.
 
 
-### 7. Cluster Averages:
+### 3.4.7 Cluster Averages:
 
 The final step involved calculating the averages for each cluster. Here are the results:
 ![image](https://github.com/user-attachments/assets/892b0763-d5c1-4fd3-ac97-d3799f62dc12)
