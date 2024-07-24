@@ -305,40 +305,49 @@ t.test(dom$toas, inter$toas)
 
 **Todep (Total Depression Score):**
 
-No significant difference in mean scores between international and domestic students.
-Conclusion: The null hypothesis that the means are equal cannot be rejected for todep.
+* No significant difference in mean scores between international and domestic students.
+* Conclusion: The null hypothesis that the means are equal cannot be rejected for todep.
 
 **Tosc (Total Social Connectedness Score):**
 
-No significant difference in mean scores between international and domestic students.
-Conclusion: The null hypothesis that the means are equal cannot be rejected for tosc.
+* No significant difference in mean scores between international and domestic students.
+* Conclusion: The null hypothesis that the means are equal cannot be rejected for tosc.
 
 **Toas (Total Acculturative Stress Score):**
 
-Significant difference in mean scores between international and domestic students.
-Conclusion: The null hypothesis that the means are equal is rejected for toas, indicating that international students have significantly higher acculturative stress compared to domestic students.
+* Significant difference in mean scores between international and domestic students.
+* Conclusion: The null hypothesis that the means are equal is rejected for toas, indicating that international students have significantly higher acculturative stress compared to domestic students.
 
 ## 3.4 🚀 Clustering
 
 To perform unsupervised machine learning using K-means clustering, we first upload the dataset into the VSCode environment. Here are the key steps taken:
 
 ### 3.4.1 Upload Data:
+The dataset is uploaded to the VSCode environment for preprocessing and analysis.
+
 ```
 import pandas as pd
 df = pd.read_csv("C:/users/luise/downloads/students.csv.csv")
 df = df[["inter_dom","age","stay","japanese_cate","english_cate","todep","tosc","toas"]]
 ```
-The dataset is uploaded to the VSCode environment for preprocessing and analysis.
 
 ### 3.4.2 Initial Inspection:
+The first few columns of the dataset are examined. The dataset includes categorical variables such as inter_dom, japanese_cate, and english_cate. We omitted gender and academic for this clustering analysis.
 ```
 df.head(2)
 ```
 ![image](https://github.com/user-attachments/assets/906caa66-f66a-4146-8514-9d8e45baf96a)
 
-The first few columns of the dataset are examined. The dataset includes categorical variables such as inter_dom, japanese_cate, and english_cate. We omitted gender and academic for this clustering analysis.
 
 ### 3.4.3 Data Transformation:
+Categorical to Numerical:
+* The inter_dom column is transformed into a dummy variable, where a value of 1 indicates an international student and 0 indicates a domestic student.
+
+The japanese_cate and english_cate columns are converted into ordinal values. For example:
+* Low proficiency is represented by 1.
+* Average proficiency is represented by 2.
+* High proficiency is represented by 3.
+
 ```
 cat_map = {'Low': 1, 'Average': 2, 'High': 3}
 df["japanese_cate"] = df["japanese_cate"].replace(cat_map)
@@ -350,15 +359,8 @@ data.head(2)
 ![image](https://github.com/user-attachments/assets/f99b104c-e305-4c12-a6e8-ad24945b3c59)
 
 
-Categorical to Numerical:
-* The inter_dom column is transformed into a dummy variable, where a value of 1 indicates an international student and 0 indicates a domestic student.
-
-The japanese_cate and english_cate columns are converted into ordinal values. For example:
-* Low proficiency is represented by 1.
-* Average proficiency is represented by 2.
-* High proficiency is represented by 3.
-
 ### 3.4.4 Principal Component Analysis (PCA):
+To manage the many variables, we applied PCA. The explained variance ratio indicated that two components account for more than 95% of the variance. Thus, two components were chosen for the analysis.
 ```
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
@@ -372,9 +374,8 @@ plt.title("PCA Explained Variance Ratio")
 ![image](https://github.com/user-attachments/assets/ccd05c10-3522-4390-ac6d-685b3f6e2636)
 
 
-To manage the many variables, we applied PCA. The explained variance ratio indicated that two components account for more than 95% of the variance. Thus, two components were chosen for the analysis.
-
 ### 3.4.5 Selecting the Best Number of Clusters:
+We used the K-means algorithm from sklearn and ran tests with different numbers of clusters. Using the elbow method, we identified that 3 clusters provide the best fit for our data.
 ```
 pca = PCA(n_components=2)
 principalComponents = pca.fit_transform(data)
@@ -392,9 +393,8 @@ plt.title("Clusters")
 ![image](https://github.com/user-attachments/assets/0edeaa36-bec3-4176-a6fe-fc2297904b3d)
 
 
-We used the K-means algorithm from sklearn and ran tests with different numbers of clusters. Using the elbow method, we identified that 3 clusters provide the best fit for our data.
-
 ### 3.4.6 Running the Clustering Algorithm:
+We performed K-means clustering with 3 clusters on the PCA-transformed dataset. The resulting plot shows three distinct clusters with sufficient information to classify the students effectively.
 ```
 kmc = KMeans(n_clusters=3, init = "k-means++", random_state=21)
 kmc.fit(data)
@@ -409,8 +409,6 @@ plt.title("Students Clustering")
 ```
 ![image](https://github.com/user-attachments/assets/913f0605-6d54-4f98-9b1f-891e77c90336)
 
-
-We performed K-means clustering with 3 clusters on the PCA-transformed dataset. The resulting plot shows three distinct clusters with sufficient information to classify the students effectively.
 
 
 ### 3.4.7 Cluster Averages:
