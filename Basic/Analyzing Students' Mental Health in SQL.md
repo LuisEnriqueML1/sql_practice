@@ -426,3 +426,17 @@ The final step involved calculating the averages for each cluster. Here are the 
   
 *These clusters provide valuable insights into the different student groups, helping to identify those who may need additional support to prevent depression and improve their overall well-being.*
 
+# 🔍 Final Thoughts
+
+Based on the data 📊, an increase in "todep" signifies higher depression 😞, an increase in "tosc" indicates a greater sense of belonging to social groups 👥, and an increase in "toas" reflects higher acculturative stress 😓.
+
+From the SQL data description , I found that international students 🌍 experience higher acculturative stress 📈. This symptom is also more prevalent among women. Graduate students 🎓 tend to have more acculturative stress compared to undergraduates 📚, who show higher levels of depression 😔. Additionally, students with lower Japanese proficiency exhibit more significant symptoms of acculturative stress 😥.
+
+In the RStudio results 📉, I discovered a negative correlation between "todep" and "tosc" ➖, meaning there is less depression when there is a lower degree of connectivity to groups 🚫👥. "Todep" and "toas" have a positive correlation ➕, indicating that higher acculturative stress is associated with increased depression . Furthermore, a greater sense of belonging to social groups reduces acculturative stress 😊.
+
+Finally, the cluster analysis revealed three distinct groups:
+
+Cluster 0: This group includes students with higher Japanese proficiency 🇯🇵, greater belonging to social groups 👯, and lower acculturative stress 🌟.
+Cluster 1: **This group, which may require the most attention in this study , comprises students with higher depression 😢, lower sense of belonging to groups 🚶‍♀️, and higher acculturative stress 😫.**
+Cluster 2: This group is characterized by students with a shorter stay ⏳ and the lowest average age 🧒.
+
