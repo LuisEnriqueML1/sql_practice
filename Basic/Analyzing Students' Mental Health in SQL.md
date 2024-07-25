@@ -436,7 +436,7 @@ In the RStudio results 📉, I discovered a negative correlation between "todep"
 
 Finally, the cluster analysis revealed three distinct groups:
 
-Cluster 0: This group includes students with higher Japanese proficiency 🇯🇵, greater belonging to social groups 👯, and lower acculturative stress 🌟.
-Cluster 1: **This group, which may require the most attention in this study , comprises students with higher depression 😢, lower sense of belonging to groups 🚶‍♀️, and higher acculturative stress 😫.**
-Cluster 2: This group is characterized by students with a shorter stay ⏳ and the lowest average age 🧒.
+* Cluster 0: This group includes students with higher Japanese proficiency 🇯🇵, greater belonging to social groups 👯, and lower acculturative stress 🌟.
+* Cluster 1: **This group, which may require the most attention in this study , comprises students with higher depression 😢, lower sense of belonging to groups 🚶‍♀️, and higher acculturative stress 😫.**
+* Cluster 2: This group is characterized by students with a shorter stay ⏳ and the lowest average age 🧒.
 
